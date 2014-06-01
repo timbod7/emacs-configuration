@@ -91,6 +91,7 @@
  '(c-basic-offset 4)
  '(c-default-style (quote ((c-mode . "twd") (c++-mode . "twd") (java-mode . "java") (awk-mode . "awk") (other . "gnu"))))
  '(font-use-system-font t)
+ '(projectile-globally-ignored-directories (quote (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" "build" ".cabal-sandbox")))
  '(speedbar-default-position (quote left-right))
  '(speedbar-use-images nil)
  '(tool-bar-mode nil)
