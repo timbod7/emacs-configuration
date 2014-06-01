@@ -72,6 +72,8 @@
 
 (put 'narrow-to-region 'disabled nil)
 
+(setq inhibit-startup-message t)
+
 ;----------------------------------------------------------------------
 ; projectile configuration
 ; 
