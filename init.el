@@ -37,6 +37,7 @@
 (global-set-key "\C-x@" 'compile)
 (global-unset-key "\C-c\C-c")
 (global-set-key "\C-c\C-c" 'comment-region)
+(global-set-key "\C-xg" `magit-status)
 
 ;----------------------------------------------------------------------
 ; Modes for various file types
