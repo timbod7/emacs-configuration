@@ -4,6 +4,13 @@
 (setq package-enable-at-startup nil)
 (package-initialize)
 
+; The following packages need to be installed
+;     haskell-mode
+;     org-present
+;     projectile
+;     flx-ido
+;     magit
+
 ;----------------------------------------------------------------------
 ; Full screen usage
 
@@ -20,14 +27,13 @@
 ;----------------------------------------------------------------------
 ; Haskell Mode (against clone of git repository)
 
-(load "~/.emacs.d/repos/haskell-mode/haskell-site-file")
+(require 'haskell-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
 ;----------------------------------------------------------------------
 ; Org present mode
 
-(add-to-list 'load-path "~/.emacs.d/repos/org-present")
 (require 'org-present)
 
 ;----------------------------------------------------------------------
