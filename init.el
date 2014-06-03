@@ -10,6 +10,7 @@
 ;     projectile
 ;     flx-ido
 ;     magit
+;     ido-vertical-mode
 
 ;----------------------------------------------------------------------
 ; Full screen usage
@@ -88,6 +89,8 @@
 (projectile-global-mode)
 (require 'flx-ido)
 (flx-ido-mode 1)
+(require 'ido-vertical-mode)
+(ido-vertical-mode 1)
 
 ;----------------------------------------------------------------------
 ; Customisation
