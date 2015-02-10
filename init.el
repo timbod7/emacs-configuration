@@ -6,6 +6,7 @@
 
 ; The following packages need to be installed
 ;     haskell-mode
+;     ghc
 ;     org-present
 ;     projectile
 ;     flx-ido
@@ -31,6 +32,12 @@
 (require 'haskell-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
+;----------------------------------------------------------------------
+; ghc-mod support
+(autoload 'ghc-init "ghc" nil t)
+(autoload 'ghc-debug "ghc" nil t)
+; (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 ;----------------------------------------------------------------------
 ; Org present mode
@@ -94,6 +101,9 @@
 
 ;----------------------------------------------------------------------
 ; Customisation
+
+(set-background-color "white")
+(set-foreground-color "black")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
