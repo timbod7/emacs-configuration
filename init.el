@@ -12,6 +12,7 @@
 ;     flx-ido
 ;     magit
 ;     ido-vertical-mode
+;     markdown-mode
 
 ;----------------------------------------------------------------------
 ; Full screen usage
