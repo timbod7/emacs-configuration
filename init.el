@@ -43,6 +43,17 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
 ;----------------------------------------------------------------------
+; Javascript
+
+(require 'js2-mode)
+(add-hook 'js-mode-hook 'js2-minor-mode)
+
+;----------------------------------------------------------------------
+; Markdown mode
+(require 'markdown-mode)
+(add-hook 'markdown-mode-hook 'auto-fill-mode)
+
+;----------------------------------------------------------------------
 ; Purescript mode
 ;
 ; Installed with:
@@ -52,7 +63,8 @@
 
 (add-to-list 'load-path "~/.emacs.d/purescript-mode/")
 (require 'purescript-mode-autoloads)
-(add-to-list 'Info-default-directory-list "~/lib/emacs/purescript-mode/")
+(add-to-list 'Info-default-directory-list "~/.emacs.d/purescript-mode/")
+(add-hook 'purescript-mode-hook 'turn-on-purescript-indentation)
 
 ;----------------------------------------------------------------------
 ; ghc-mod support
@@ -99,6 +111,12 @@
      (c-offsets-alist . ((innamespace . [0])))))
 
 (c-add-style "twd" twd-cc-style)
+
+;----------------------------------------------------------------------
+; java formatting
+
+(add-hook 'java-mode-hook (lambda ()
+                                (setq c-basic-offset 2)))
 
 ;----------------------------------------------------------------------
 ; Unfill a paragraph
@@ -194,7 +212,10 @@ automatically."
    (quote
     ("/Users/timd/bin" "/Applications/ghc-7.8.4.app/Contents/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
  '(font-use-system-font t)
+ '(fringe-mode 0 nil (fringe))
  '(js-indent-level 2)
+ '(js2-basic-offset 2)
+ '(js2-include-node-externs t)
  '(neo-show-header nil)
  '(neo-window-width 32)
  '(projectile-globally-ignored-directories
