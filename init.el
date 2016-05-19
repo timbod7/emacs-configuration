@@ -2,22 +2,42 @@
 
 (require 'package)
 
-(add-to-list 'package-archives '("melpa" . "http://melpa-stable.milkbox.net/packages/") t)
-(setq package-enable-at-startup nil)
+;----------------------------------------------------------------------
+; see http://stackoverflow.com/questions/10092322/how-to-automatically-install-emacs-packages-by-specifying-a-list-of-package-name
+
+; list the packages we need
+(setq package-list
+  '(haskell-mode 
+    ghc
+    org-present
+    projectile
+    flx-ido
+    ido-vertical-mode
+    markdown-mode
+    neotree
+    js2-mode
+    helm
+    ))
+
+; list the repositories containing them
+(setq package-archives
+  '(("gnu" . "http://elpa.gnu.org/packages/")
+    ("melpa" . "http://melpa-stable.milkbox.net/packages/")
+    ))
+    
+
+; activate all the packages (in particular autoloads)
 (package-initialize)
 
-; The following packages need to be installed
-;     haskell-mode
-;     ghc
-;     org-present
-;     projectile
-;     flx-ido
-;     magit
-;     ido-vertical-mode
-;     markdown-mode
-;     neotree
-;     js2
-;     helm
+; fetch the list of packages available if we don't
+; have it already 
+(or (file-exists-p package-user-dir)
+    (package-refresh-contents))
+
+; install any missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 ;----------------------------------------------------------------------
 ; Confirm exit
