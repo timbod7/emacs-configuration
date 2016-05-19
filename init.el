@@ -16,12 +16,21 @@
 ;     ido-vertical-mode
 ;     markdown-mode
 ;     neotree
-
+;     js2
+;     helm
 
 ;----------------------------------------------------------------------
 ; Confirm exit
 (setq confirm-kill-emacs 'yes-or-no-p)
  
+;----------------------------------------------------------------------
+; Helm mode
+(require 'helm-config)
+(helm-mode 1)
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)   ; make TAB works in terminal
+(define-key helm-map (kbd "C-z")  'helm-select-action)              ; list actions using C-z
+
 ;----------------------------------------------------------------------
 ; Full screen usage
 
@@ -68,20 +77,22 @@
 
 ;----------------------------------------------------------------------
 ; ghc-mod support
-(autoload 'ghc-init "ghc" nil t)
-(autoload 'ghc-debug "ghc" nil t)
+;(autoload 'ghc-init "ghc" nil t)
+; (autoload 'ghc-debug "ghc" nil t)
 
-(defvar ghc-ghc-options '("-fno-warn-name-shadowing") "*GHC options")
-(add-hook 'haskell-mode-hook
-          (lambda () (ghc-init) )
-          )
+; (defvar ghc-ghc-options '("-fno-warn-name-shadowing") "*GHC options")
+;(add-hook 'haskell-mode-hook
+;          (lambda () (ghc-init) )
+;          )
                   
 
 ;----------------------------------------------------------------------
 ; Org present mode
 
 (require 'org-present)
-
+(define-key global-map (kbd "s-=") 'text-scale-increase)
+(define-key global-map (kbd "s--") 'text-scale-decrease)
+                                   
 ;----------------------------------------------------------------------
 ; key-bindings
 
@@ -163,10 +174,12 @@
 ; 
 (require 'projectile)
 (projectile-global-mode)
-(require 'flx-ido)
-(flx-ido-mode 1)
-(require 'ido-vertical-mode)
-(ido-vertical-mode 1)
+;(require 'flx-ido)
+;(flx-ido-mode 1)
+;(require 'ido-vertical-mode)
+;(ido-vertical-mode 1)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
 
 ;----------------------------------------------------------------------
 ; neotree configuration
