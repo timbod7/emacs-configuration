@@ -9,14 +9,14 @@
 (setq package-list
   '(haskell-mode 
     ghc
-    org-present
+;    org-present
     projectile
     flx-ido
     ido-vertical-mode
     markdown-mode
     neotree
     js2-mode
-    helm
+;    helm
     ))
 
 ; list the repositories containing them
@@ -42,6 +42,10 @@
 ;----------------------------------------------------------------------
 ; Confirm exit
 (setq confirm-kill-emacs 'yes-or-no-p)
+
+;----------------------------------------------------------------------
+; Never split windows horizontally
+(setq split-width-threshold 9999)
  
 ;----------------------------------------------------------------------
 ; Helm mode
@@ -90,10 +94,10 @@
 ;   git clone https://github.com/dysinger/purescript-mode.git
 ;   make EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs all
 
-(add-to-list 'load-path "~/.emacs.d/purescript-mode/")
-(require 'purescript-mode-autoloads)
-(add-to-list 'Info-default-directory-list "~/.emacs.d/purescript-mode/")
-(add-hook 'purescript-mode-hook 'turn-on-purescript-indentation)
+;(add-to-list 'load-path "~/.emacs.d/purescript-mode/")
+;(require 'purescript-mode-autoloads)
+;(add-to-list 'Info-default-directory-list "~/.emacs.d/purescript-mode/")
+;(add-hook 'purescript-mode-hook 'turn-on-purescript-indentation)
 
 ;----------------------------------------------------------------------
 ; ghc-mod support
@@ -109,9 +113,9 @@
 ;----------------------------------------------------------------------
 ; Org present mode
 
-(require 'org-present)
-(define-key global-map (kbd "s-=") 'text-scale-increase)
-(define-key global-map (kbd "s--") 'text-scale-decrease)
+;(require 'org-present)
+;(define-key global-map (kbd "s-=") 'text-scale-increase)
+;(define-key global-map (kbd "s--") 'text-scale-decrease)
                                    
 ;----------------------------------------------------------------------
 ; key-bindings
@@ -199,7 +203,7 @@
 ;(require 'ido-vertical-mode)
 ;(ido-vertical-mode 1)
 (setq projectile-completion-system 'helm)
-(helm-projectile-on)
+;(helm-projectile-on)
 
 ;----------------------------------------------------------------------
 ; neotree configuration
@@ -234,16 +238,8 @@ automatically."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 4)
- '(c-default-style
-   (quote
-    ((c-mode . "twd")
-     (c++-mode . "twd")
-     (java-mode . "java")
-     (awk-mode . "awk")
-     (other . "gnu"))))
- '(exec-path
-   (quote
-    ("/Users/timd/bin" "/Applications/ghc-7.8.4.app/Contents/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
+ '(c-default-style (quote ((c-mode . "twd") (c++-mode . "twd") (java-mode . "java") (awk-mode . "awk") (other . "gnu"))))
+ '(exec-path (quote ("/Users/timd/bin" "/Applications/ghc-7.8.4.app/Contents/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
  '(font-use-system-font t)
  '(fringe-mode 0 nil (fringe))
  '(js-indent-level 2)
@@ -251,9 +247,7 @@ automatically."
  '(js2-include-node-externs t)
  '(neo-show-header nil)
  '(neo-window-width 32)
- '(projectile-globally-ignored-directories
-   (quote
-    (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" "build" ".cabal-sandbox")))
+ '(projectile-globally-ignored-directories (quote (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" "build" ".cabal-sandbox")))
  '(projectile-use-git-grep t)
  '(speedbar-default-position (quote left-right))
  '(speedbar-use-images nil)
@@ -265,7 +259,7 @@ automatically."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 116 :width normal)))))
 
 ;----------------------------------------------------------------------
 
