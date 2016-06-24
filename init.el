@@ -16,7 +16,7 @@
     markdown-mode
     neotree
     js2-mode
-;    helm
+    helm
     ))
 
 ; list the repositories containing them
