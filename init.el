@@ -17,6 +17,7 @@
     neotree
     js2-mode
     helm
+    color-theme-sanityinc-tomorrow
     ))
 
 ; list the repositories containing them
@@ -118,16 +119,32 @@
 ;(define-key global-map (kbd "s--") 'text-scale-decrease)
                                    
 ;----------------------------------------------------------------------
-; key-bindings
+; personal key-bindings
 
 (global-unset-key "\C-x@")
 (global-set-key "\C-x@" 'compile)
 (global-set-key "\C-xg" `magit-status)
 
-; control-c c ... is my personal keymap
+(global-unset-key "\C-z")     ; Minimising on OSX crashes :-( so disable it
+(global-unset-key "\C-xz")
+(global-unset-key "\C-x\C-z")
+
+(defun neotree-project-dir ()
+  "Open NeoTree using the git root."
+  (interactive)
+  (let ((project-dir (projectile-project-root))
+        (file-name (buffer-file-name)))
+    (if project-dir
+        (progn
+          (neotree-show)
+          (neotree-dir project-dir)
+          (neotree-find file-name))
+      (message "Could not find git project root."))))
 
 (global-set-key "\C-ccc" 'comment-region)
-(global-set-key "\C-cct" 'neotree-toggle)
+(global-set-key "\C-ctt" 'neotree-toggle)
+(global-set-key "\C-ctp" 'neotree-project-dir)
+(global-set-key "\C-ctf" 'neotree-find)
 
 
 ;----------------------------------------------------------------------
@@ -192,6 +209,9 @@
 (put 'narrow-to-region 'disabled nil)
 
 (setq inhibit-startup-message t)
+
+; Disable bold text
+(set-face-bold-p 'bold nil)
 
 ;----------------------------------------------------------------------
 ; projectile configuration
