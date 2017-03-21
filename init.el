@@ -17,7 +17,8 @@
     neotree
     js2-mode
     helm
-    color-theme-sanityinc-tomorrow
+;    color-theme-sanityinc-tomorrow
+    intero
     ))
 
 ; list the repositories containing them
@@ -75,6 +76,7 @@
 (require 'haskell-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'intero-mode)
 
 ;----------------------------------------------------------------------
 ; Javascript
