@@ -262,7 +262,6 @@ automatically."
  '(c-basic-offset 4)
  '(c-default-style (quote ((c-mode . "twd") (c++-mode . "twd") (java-mode . "java") (awk-mode . "awk") (other . "gnu"))))
  '(exec-path (quote ("/Users/timd/bin" "/Applications/ghc-7.8.4.app/Contents/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
- '(font-use-system-font t)
  '(fringe-mode 0 nil (fringe))
  '(js-indent-level 2)
  '(js2-basic-offset 2)
@@ -275,13 +274,6 @@ automatically."
  '(speedbar-use-images nil)
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 116 :width normal)))))
 
 ;----------------------------------------------------------------------
 
