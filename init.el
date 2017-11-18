@@ -7,7 +7,7 @@
 
 ; list the packages we need
 (setq package-list
-  '(haskell-mode 
+  '(haskell-mode
     ghc
 ;    org-present
     projectile
@@ -19,6 +19,8 @@
     helm
 ;    color-theme-sanityinc-tomorrow
     intero
+    typescript-mode
+    tide
     ))
 
 ; list the repositories containing them
@@ -26,13 +28,13 @@
   '(("gnu" . "http://elpa.gnu.org/packages/")
     ("melpa" . "http://melpa-stable.milkbox.net/packages/")
     ))
-    
+
 
 ; activate all the packages (in particular autoloads)
 (package-initialize)
 
 ; fetch the list of packages available if we don't
-; have it already 
+; have it already
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 
@@ -48,7 +50,11 @@
 ;----------------------------------------------------------------------
 ; Never split windows horizontally
 (setq split-width-threshold 9999)
- 
+
+;----------------------------------------------------------------------
+; Remove trailing whitespace on save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;----------------------------------------------------------------------
 ; Helm mode
 (require 'helm-config)
@@ -71,18 +77,43 @@
 (global-set-key [f11] 'toggle-fullscreen)
 
 ;----------------------------------------------------------------------
+; Scaling
+
+(define-key global-map (kbd "s-=") 'text-scale-increase)
+(define-key global-map (kbd "s--") 'text-scale-decrease)
+
+;----------------------------------------------------------------------
 ; Haskell Mode
 
 (require 'haskell-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-hook 'haskell-mode-hook 'intero-mode)
+; (add-hook 'haskell-mode-hook 'intero-mode)
 
 ;----------------------------------------------------------------------
 ; Javascript
 
 (require 'js2-mode)
 (add-hook 'js-mode-hook 'js2-minor-mode)
+
+;----------------------------------------------------------------------
+; Typescript
+; see https://github.com/ananthakumaran/tide
+
+(require 'typescript-mode)
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+
+(defun tide-mode-setup ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
 
 ;----------------------------------------------------------------------
 ; Markdown mode
@@ -111,15 +142,13 @@
 ;(add-hook 'haskell-mode-hook
 ;          (lambda () (ghc-init) )
 ;          )
-                  
+
 
 ;----------------------------------------------------------------------
 ; Org present mode
 
 ;(require 'org-present)
-;(define-key global-map (kbd "s-=") 'text-scale-increase)
-;(define-key global-map (kbd "s--") 'text-scale-decrease)
-                                   
+
 ;----------------------------------------------------------------------
 ; personal key-bindings
 
@@ -217,7 +246,7 @@
 
 ;----------------------------------------------------------------------
 ; projectile configuration
-; 
+;
 (require 'projectile)
 (projectile-global-mode)
 ;(require 'flx-ido)
@@ -260,21 +289,40 @@ automatically."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 4)
- '(c-default-style (quote ((c-mode . "twd") (c++-mode . "twd") (java-mode . "java") (awk-mode . "awk") (other . "gnu"))))
- '(exec-path (quote ("/Users/timd/bin" "/Applications/ghc-7.8.4.app/Contents/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
+ '(c-default-style
+   (quote
+    ((c-mode . "twd")
+     (c++-mode . "twd")
+     (java-mode . "java")
+     (awk-mode . "awk")
+     (other . "gnu"))))
+ '(exec-path
+   (quote
+    ("/Users/timd/bin" "/Users/timd/.local/bin" "/usr/local/bin" "/Applications/ghc-7.8.4.app/Contents/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
  '(fringe-mode 0 nil (fringe))
  '(js-indent-level 2)
- '(js2-basic-offset 2)
  '(js2-include-node-externs t)
  '(neo-show-header nil)
  '(neo-window-width 32)
- '(projectile-globally-ignored-directories (quote (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" "build" ".cabal-sandbox")))
+ '(package-selected-packages
+   (quote
+    (tide ## purescript-mode typescript-mode yaml-mode org-present neotree markdown-mode magit js2-mode intero ido-vertical-mode helm-projectile ghc flx-ido exec-path-from-shell color-theme-sanityinc-tomorrow)))
+ '(projectile-globally-ignored-directories
+   (quote
+    (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" "build" ".cabal-sandbox")))
  '(projectile-use-git-grep t)
  '(speedbar-default-position (quote left-right))
  '(speedbar-use-images nil)
  '(tool-bar-mode nil)
+ '(typescript-indent-level 2)
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
 
 ;----------------------------------------------------------------------
 
 (server-start)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
