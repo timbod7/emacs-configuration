@@ -16,6 +16,7 @@
     markdown-mode
     neotree
     js2-mode
+    json-mode
     helm
 ;    color-theme-sanityinc-tomorrow
     intero
@@ -199,7 +200,12 @@
 ; java formatting
 
 (add-hook 'java-mode-hook (lambda ()
-                                (setq c-basic-offset 2)))
+  (setq c-basic-offset 2)
+  (c-set-offset 'arglist-intro 0)
+  (c-set-offset 'arglist-cont-nonempty '+)
+  (c-set-offset 'arglist-cont 0)
+  (c-set-offset 'arglist-close '-)
+  ))
 
 ;----------------------------------------------------------------------
 ; Unfill a paragraph
@@ -299,7 +305,7 @@ automatically."
      (other . "gnu"))))
  '(exec-path
    (quote
-    ("/Users/timd/bin" "/Users/timd/.local/bin" "/usr/local/bin" "/Applications/ghc-7.8.4.app/Contents/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
+    ("/home/timd/.nix-profile/bin" "/home/timd/.nix-profile/sbin" "/home/timd/bin" "/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/games" "/usr/lib/emacs/24.5/x86_64-linux-gnu")))
  '(fringe-mode 0 nil (fringe))
  '(js-indent-level 2)
  '(js2-include-node-externs t)
@@ -328,4 +334,5 @@ automatically."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "DAMA" :family "Ubuntu Mono"))))
+ '(fixed-pitch ((t (:inherit default)))))
